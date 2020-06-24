@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #020024;
+  background: -webkit-linear-gradient(left, #020024 0%, #8febfe 0%, #5353eb 100%);
+  background: -o-linear-gradient(left, #020024 0%, #8febfe 0%, #5353eb 100%);
+  background: linear-gradient(to right, #020024 0%, #8febfe 0%, #5353eb 100%);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+main {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+main .input-section {
+  margin: 2rem auto;
+  text-align: center;
+}
+main .input-section h1 {
+  font-family: "Cabin", sans-serif;
+}
+main .input-section form {
+  margin-top: 0.7rem;
+}
+main .input-section form input {
+  width: 50%;
+  border: 2px solid #f49a4b;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+}
+main .input-section form button {
+  background: -webkit-linear-gradient(left, #020024 0%, #f49a4b 0%, #5353eb 100%);
+  background: -o-linear-gradient(left, #020024 0%, #f49a4b 0%, #5353eb 100%);
+  background: linear-gradient(to right, #020024 0%, #f49a4b 0%, #5353eb 100%);
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-family: "Varela Round", sans-serif;
+  color: #e6e1dd;
+}
+main .result-section {
+  margin: 1rem auto;
+  background-color: #f9f8f8;
+  border: 3px solid #b0a2c9;
+  border-radius: 15px;
+  padding: 1rem;
+}
+main .result-section .city {
+  display: flex;
+  justify-content: space-between;
+}
+main .result-section .city .description {
+  width: 50%;
+}
+
+
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */

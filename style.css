@@ -1,0 +1,108 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #020024;
+  background: -webkit-linear-gradient(left, #020024 0%, #8febfe 0%, #5353eb 100%);
+  background: -o-linear-gradient(left, #020024 0%, #8febfe 0%, #5353eb 100%);
+  background: linear-gradient(to right, #020024 0%, #8febfe 0%, #5353eb 100%);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+}
+
+main {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+main .input-section {
+  margin: 2rem auto;
+  text-align: center;
+}
+main .input-section h1 {
+  font-family: "Cabin", sans-serif;
+}
+main .input-section form {
+  margin-top: 0.7rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+main .input-section form input {
+  width: 50%;
+  border: 2px solid #f49a4b;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+}
+main .input-section form button {
+  background: -webkit-linear-gradient(left, #020024 0%, #f49a4b 0%, #5353eb 100%);
+  background: -o-linear-gradient(left, #020024 0%, #f49a4b 0%, #5353eb 100%);
+  background: linear-gradient(to right, #020024 0%, #f49a4b 0%, #5353eb 100%);
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 0.2rem 1rem;
+  font-family: "Varela Round", sans-serif;
+  color: #e6e1dd;
+}
+main .input-section form button:hover #img {
+  transform: rotate(90deg);
+}
+main .input-section form #img {
+  position: relative;
+  top: 2px;
+  left: 3px;
+  transition: all 0.5s;
+}
+main .input-section .list {
+  margin-top: 0.5rem;
+}
+main .input-section li {
+  list-style: none;
+  border: 2px solid black;
+  width: max-content;
+  width: 50%;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background: aliceblue;
+  margin: 0.2rem auto;
+  cursor: pointer;
+}
+main .input-section li:hover {
+  background: linear-gradient(90deg, #dfd9e7 17%, #b0a2c9 47%, #6464e9 100%);
+}
+main .result-section .city {
+  margin: 1rem auto;
+  background-color: #73c1f1;
+  border: 3px solid #b0a2c9;
+  border-radius: 15px;
+  padding: 1rem;
+  width: 50%;
+  height: 50vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+main .result-section .city .description {
+  align-self: center;
+  text-align: left;
+}
+main .result-section .city .details {
+  display: flex;
+  justify-content: space-around;
+  border-top: 2px solid white;
+  padding-top: 0.7rem;
+}
+main .result-section .city span p {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+/*# sourceMappingURL=style.css.map */

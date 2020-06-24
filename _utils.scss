@@ -1,0 +1,14 @@
+$main-font: 'Cabin', sans-serif;
+$btn-font: 'Varela Round', sans-serif;
+
+@mixin main-button {
+	background: -webkit-linear-gradient(left, rgba(2,0,36,1) 0%, rgba(244,154,75,1) 0%, rgba(83,83,235,1) 100%);
+	background: -o-linear-gradient(left, rgba(2,0,36,1) 0%, rgba(244,154,75,1) 0%, rgba(83,83,235,1) 100%);
+	background: linear-gradient(to right, rgba(2,0,36,1) 0%, rgba(244,154,75,1) 0%, rgba(83,83,235,1) 100%); 
+
+	border: 2px solid black;
+	border-radius: 1rem;
+	padding: 0.2rem 1rem;
+	font-family: $btn-font;
+	color: #e6e1dd;
+}
