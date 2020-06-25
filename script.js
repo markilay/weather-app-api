@@ -6,7 +6,7 @@ const apiKey = '4595799bc0msh11d455896e8fd3dp14fc0fjsn36b3a68776b4';
 // const WEATHERAPI = 'api.openweathermap.org/data/2.5/weather?q=';
 // const apiKey = '&appid=cba9b27e4c6cd316c764d468b4ee756e'
 
-const CITIESAPI = "https://wft-geo-db.p.rapidapi.com/v1/geo/cities";
+const CITIESAPI = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 const cities = [];
 
 const input = document.querySelector('[name="city"]')
@@ -21,13 +21,9 @@ async function searchCity() {
 	day.textContent = `${months[today.getMonth()]} ${today.getDate()}`
 
 	input.focus();
-	const res = await fetch(`${CITIESAPI}`, {
-							"method": "GET",
-							"headers": {
-								"x-rapidapi-host": "wft-geo-db.p.rapidapi.com",
-								"x-rapidapi-key": "4595799bc0msh11d455896e8fd3dp14fc0fjsn36b3a68776b4"
-								}
-							})
+	input.parentElement.reset();
+	
+	const res = await fetch(`${CITIESAPI}`);
 	const data = await res.json();
 	cities.push(...data) 
 }
@@ -53,6 +49,7 @@ async function getCityWeather(query) {
 	const {list} = await res.json();
 	console.log(list[0])
 	city.innerHTML = displayCityWeather(list[0]);
+	input.parentElement.reset();
 }
 
 function displayList() {
