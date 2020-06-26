@@ -39,13 +39,13 @@ main .input-section form {
   position: relative;
   display: flex;
   justify-content: center;
-  gap: 1rem;
 }
 main .input-section form input {
   width: 50%;
   border: 2px solid #f49a4b;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
 }
 main .input-section form button {
   background: -webkit-linear-gradient(left, #020024 0%, #f49a4b 0%, #5353eb 100%);
@@ -68,13 +68,14 @@ main .input-section form #img {
   transition: all 0.5s;
 }
 main .input-section .list {
-  margin-top: 0.5rem;
+  width: 50%;
+  margin: 1rem auto 0;
 }
 main .input-section li {
   list-style: none;
   border: 2px solid black;
   width: max-content;
-  width: 50%;
+  width: 100%;
   padding: 0.5rem;
   border-radius: 10px;
   background: aliceblue;

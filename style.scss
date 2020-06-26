@@ -48,13 +48,14 @@ main {
 			position: relative;
 			display: flex;
 			justify-content: center;
-			gap: 1rem;
+			
 
 			input {
 				width: 50%;
 				border: 2px solid #f49a4b;
 				border-radius: 1rem;
 				padding: 0.5rem 1rem;
+				margin-right: 0.5rem;
 			}
 			button {
 				@include main-button();
@@ -73,14 +74,15 @@ main {
 		}
 			
 		.list {
-			margin-top: 0.5rem;
+			width: 50%;
+			margin: 1rem auto 0;
 		}
 
 		li {
 			list-style: none;
 			border: 2px solid black;
 			width: max-content;
-			width: 50%;
+			width: 100%;
 			padding: 0.5rem;
 			border-radius: 10px;
 			background: aliceblue;
