@@ -18,6 +18,10 @@ body {
 	height: 100vh;
 }
 
+.hidden {
+	display: none;
+}
+
 
 main {
 	width: 50%;
@@ -52,11 +56,12 @@ main {
 
 			input {
 				width: 50%;
-				border: 2px solid #f49a4b;
+				border: $outline;
 				border-radius: 1rem;
 				padding: 0.5rem 1rem;
 				margin-right: 0.5rem;
 			}
+
 			button {
 				@include main-button();
 				
@@ -89,13 +94,15 @@ main {
 			margin: 0.2rem auto;
 			cursor: pointer;
 			&:hover {
-				background: linear-gradient(90deg, rgba(223,217,231,1) 17%, rgba(176,162,201,1) 47%, rgba(100,100,233,1) 100%); 
+				background: $hover; 
+			}
+			&:focus {
+				@include focus();
 			}
 		}
 	}
 
 	.result-section {
-		
 
 		.city {
 			margin: 1rem auto;

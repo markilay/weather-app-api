@@ -1,22 +1,17 @@
 import {months} from './config.js';
-// import cities from 'cities.json';
-// console.log(cities)
 
-const WEATHERAPI = 'https://community-open-weather-map.p.rapidapi.com/find?type=link%252C%20accurate&units=metric&q=';
-const apiKey = '4595799bc0msh11d455896e8fd3dp14fc0fjsn36b3a68776b4';
+const WEATHER_API = 'http://api.openweathermap.org/data/2.5/weather?q=';
+const apiKey = '&appid=cba9b27e4c6cd316c764d468b4ee756e'
 
-// const WEATHERAPI = 'api.openweathermap.org/data/2.5/weather?q=';
-// const apiKey = '&appid=cba9b27e4c6cd316c764d468b4ee756e'
+const CITIES_API = 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json'
+const cities = [];
 
-//const CITIESAPI = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
-const CITIESAPI = 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json'
-const citiesArr = [];
+const LOCATION_API = "https://api.bigdatacloud.net/data/reverse-geocode-client?";
 
 const input = document.querySelector('[name="city"]')
 const list = document.querySelector('.list')
 const city = document.querySelector('.result-section')
 const reload = document.querySelector('.reload')
-
 const day = document.querySelector('.date')
 
 async function searchCity() {
@@ -27,38 +22,39 @@ async function searchCity() {
 	input.focus();
 	input.parentElement.reset();
 	
-	const res = await fetch(`${CITIESAPI}`);
+	const res = await fetch(`${CITIES_API}`);
 	const data = await res.json();
-	citiesArr.push(...data) 
+	cities.push(...data) 
 }
 
 function findMatch(wordToMatch) {
-	return citiesArr.filter(place => {
+	return cities.filter(place => {
 		const regex = new RegExp(wordToMatch, 'gi');
 		return place.name.match(regex);
 	})
 }
 
-
 async function getCityWeather(query) {
-	const res = await fetch(`${WEATHERAPI}${query}`,{"method": "GET",
-							"headers": {
-								"x-rapidapi-host": "community-open-weather-map.p.rapidapi.com",
-								"x-rapidapi-key": `${apiKey}`
-							}
-						})
-	
-	const {list} = await res.json();
-	console.log(list[0])
-	city.innerHTML = displayCityWeather(list[0]);
+	const res = await fetch(`${WEATHER_API}${query}${apiKey}&units=metric`)
+	const data = await res.json();
+	console.log(data)
+
+	city.innerHTML = displayCityWeather(data);
 	input.parentElement.reset();
 }
 
+
 function displayList() {
-	const matchArray = findMatch(this.value);
+
+	if ( list.classList.contains('hidden')) {
+		list.classList.remove('hidden')
+	}
+	removeCityCard()
+
+	const matchArray = findMatch(input.value);
 	const html = matchArray.map(city => {
 		return `
-			<li class="city">${city.name}, ${city.country}</li>
+			<li tabindex="0" class="place">${city.name}, ${city.country}</li>
 		`
 	}).join("");
 	list.innerHTML = html;
@@ -90,27 +86,78 @@ function displayCityWeather(city) {
 	`
 }
 
-function chooseCity(e) {
-	const city = e.target.textContent.split(",")
-	if (!e.target.classList.contains('city')) { 
-		console.log('got you')
-		return 
+function removeCityCard() {
+	if (document.querySelector('.city')){
+		document.querySelector('.city').remove()
 	}
-	
-	getCityWeather(city)
-	list.remove();
 }
 
  function reloadPage(e) {
 	e.preventDefault();
-	window.location.reload()
+	list.textContent = '';
+	removeCityCard()
 	this.parentElement.reset()
 }
+
+async function showPosition(position) {
+	const latitude = `latitude=${position.coords.latitude}`;
+	const longitude = `&longitude=${position.coords.longitude}`
+	const query = latitude + longitude + "&localityLanguage=en";
+
+	const res = await fetch(`${LOCATION_API}${query}`);
+	console.log(res)
+	const {localityInfo} = await res.json();
+	input.value = localityInfo.administrative[3].name;
+	
+	displayList()
+}
+
+function keyHandler(place) {
+	console.log(e)
+}
+
+
+navigator.geolocation.getCurrentPosition(function (data) {
+	showPosition(data)
+}, (err) => {
+	console.log(err)
+	alert("Type a city you want to find")
+});
 
 input.addEventListener('keyup', displayList)
 input.addEventListener('change', displayList)
 reload.addEventListener('click', reloadPage)
 
+list.addEventListener('click', function (e) {
+	const city = e.target.textContent.split(",")
+	if (!e.target.classList.contains('place')) { 
+		console.log('got you')
+		return 
+	}
+	
+	getCityWeather(city)
+	list.classList.add('hidden')
+})
 
-list.addEventListener('click', chooseCity);
+window.addEventListener('keyup', (e) => {
+	const item = e.target.tagName;
+	const city = e.target.textContent.split(",")
+
+	if (e.target === list.firstElementChild && e.key === 'ArrowUp') {
+		list.lastElementChild.focus()
+	} else if (e.target === list.lastElementChild && e.key === 'ArrowDown') {
+		list.firstElementChild.focus()
+	} else if (e.key === 'ArrowDown' && item === 'LI'){
+		e.target.nextElementSibling.focus()
+	} else if (e.key === 'ArrowUp' && item === 'LI'){
+		e.target.previousElementSibling.focus()
+	} else if (e.key === 'Enter' && item === 'LI') {
+		getCityWeather(city)
+		list.classList.add('hidden')
+	}
+	
+})
+
 searchCity();
+
+
