@@ -1,7 +1,8 @@
 $main-font: 'Cabin', sans-serif;
 $btn-font: 'Varela Round', sans-serif;
 $outline: 2px solid #f49a4b;
-$hover: linear-gradient(90deg, rgba(223,217,231,1) 17%, rgba(176,162,201,1) 47%, rgba(100,100,233,1) 100%);;
+$hover: linear-gradient(90deg, rgba(223,217,231,1) 17%, rgba(176,162,201,1) 47%, rgba(100,100,233,1) 100%);
+
 
 @mixin focus {
 	background: $hover;

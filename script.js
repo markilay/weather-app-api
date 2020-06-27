@@ -112,17 +112,6 @@ async function showPosition(position) {
 	displayList()
 }
 
-function keyHandler(place) {
-	console.log(e)
-}
-
-
-navigator.geolocation.getCurrentPosition(function (data) {
-	showPosition(data)
-}, (err) => {
-	console.log(err)
-	alert("Type a city you want to find")
-});
 
 input.addEventListener('keyup', displayList)
 input.addEventListener('change', displayList)
@@ -157,6 +146,13 @@ window.addEventListener('keyup', (e) => {
 	}
 	
 })
+
+navigator.geolocation.getCurrentPosition(function (data) {
+	showPosition(data)
+}, (err) => {
+	console.log(err)
+	alert("Type a city you want to find")
+}); 
 
 searchCity();
 

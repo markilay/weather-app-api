@@ -1,4 +1,5 @@
 @import './utils.scss';
+@import './responsive.scss';
 
 
 * {
@@ -146,3 +147,45 @@ main {
 	}
 }
 
+@media screen and (max-width: 600px) {
+	body {
+		font-size: 14px;
+	}
+	
+	main {
+		min-width: 100%;
+		padding: 1rem;
+
+		.input-section {
+
+			h1 {
+				text-align: left;
+				padding-left: 1.5rem;
+			}
+
+			form {
+				flex-direction: column-reverse;
+				align-items: center;
+				justify-content: space;
+			
+				input {
+					margin-top: 0.5rem;
+					margin-right: 0rem;
+					padding: 0.5rem 1rem;
+				}
+
+				button {
+					width: 50%;
+					padding: 0.5rem 1rem;
+				}
+			}
+		}
+
+		.result-section {
+
+			.city {
+				width: 50%;
+			}
+		}
+	}
+}
