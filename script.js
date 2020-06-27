@@ -1,6 +1,6 @@
 import {months} from './config.js';
 
-const WEATHER_API = 'http://api.openweathermap.org/data/2.5/weather?q=';
+const WEATHER_API = 'https://api.openweathermap.org/data/2.5/weather?q=';
 const apiKey = '&appid=cba9b27e4c6cd316c764d468b4ee756e'
 
 const CITIES_API = 'https://raw.githubusercontent.com/lutangar/cities.json/master/cities.json'
