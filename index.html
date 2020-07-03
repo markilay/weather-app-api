@@ -1,35 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Weather API</title>
-	<link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather API</title>
+    <link rel="stylesheet" href="./icons/css/all.min.css" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cabin&family=Varela+Round&display=swap"
       rel="stylesheet"
-      href="./icons/css/all.min.css"
     />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <main>
+      <svg
+        class="sidebar-btn"
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="white"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+      <div class="sidebar">
+        <!-- <div class="popular-city">
+          <img
+            class="city-img"
+            src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80"
+            alt="weather"
+          />
+          <div class="info">
+            <div class="title">
+              <h3>Paric, FR</h3>
+              <p class="temperature">
+                24
+                <i class="fas fa-temperature-high icon-temp"></i>
+              </p>
+            </div>
+            <div class="description">
+              <p>Night</p>
+              <p>Thunderstorm</p>
+            </div>
+            <img
+              src="https://openweathermap.org/img/wn/04d@2x.png"
+              alt="weather"
+            />
+            <div class="details">
+              <span>
+                <p>wind</p>
+                3 m/s
+              </span>
+              <span>
+                <p>humidity</p>
+                56 %
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="popular-city">
+          <img
+            class="city-img"
+            src="https://images.unsplash.com/photo-1518235506717-e1ed3306a89b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+            alt="weather"
+          />
+          <div class="info">
+            <div class="title">
+              <h3>New York, US</h3>
+              <p class="temperature">
+                24
+                <i class="fas fa-temperature-high icon-temp"></i>
+              </p>
+            </div>
+            <div class="description">
+              <p>Night</p>
+              <p>Thunderstorm</p>
+            </div>
+            <img
+              src="https://openweathermap.org/img/wn/04d@2x.png"
+              alt="weather"
+            />
+            <div class="details">
+              <span>
+                <p>wind</p>
+                3 m/s
+              </span>
+              <span>
+                <p>humidity</p>
+                56 %
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="popular-city">
+          <img
+            class="city-img"
+            src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+            alt="weather"
+          />
+          <div class="info">
+            <div class="title">
+              <h3>London, GB</h3>
+              <p class="temperature">
+                24
+                <i class="fas fa-temperature-high icon-temp"></i>
+              </p>
+            </div>
+            <div class="description">
+              <p>Night</p>
+              <p>Thunderstorm</p>
+            </div>
+            <img
+              src="https://openweathermap.org/img/wn/04d@2x.png"
+              alt="weather"
+            />
+            <div class="details">
+              <span>
+                <p>wind</p>
+                3 m/s
+              </span>
+              <span>
+                <p>humidity</p>
+                56 %
+              </span>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="input-section">
+        <h1>
+          What's the weather forecast for <span class="date">today</span> ?
+        </h1>
+        <form class="form" autocomplete="off">
+          <input
+            required
+            autocomplete="false"
+            name="city"
+            type="text"
+            placeholder="city name..."
+          />
+          <div class="btn-section">
+            <button class="submit">Submit</button>
+            <button class="reload">
+              Research
+              <svg
+                id="img"
+                class="reload"
+                xmlns="http://www.w3.org/2000/svg"
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#e6e1dd"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+        <ul class="list"></ul>
+      </div>
+      <div class="result-section"></div>
+    </main>
 
-    <link href="https://fonts.googleapis.com/css2?family=Cabin&family=Varela+Round&display=swap" rel="stylesheet"> 
-	<link rel="stylesheet" href="style.css">
-	 
-</head>
-<body>	
-	<main>
-		<div class="input-section">
-			<h1>What's the weather forecast for <span class="date">today</span> ?</h1>
-			<form autocomplete="off">
-				<input autocomplete="false" name="city" type="text" placeholder="city name...">
-				<button class="reload">Research
-					<svg id="img" class="reload" xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e6e1dd" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/></svg>
-				</button>
-			</form>
-			<ul class="list"></ul>
-		</div>
-		<div class="result-section">
-
-		</div>
-	</main>
-	
-	<script src="./script.js" type="module"></script>
-</body>
+    <script src="./js/script.js" type="module"></script>
+  </body>
 </html>
