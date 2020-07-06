@@ -25,20 +25,108 @@ body {
     rgba(143, 235, 254, 1) 0%,
     rgba(83, 83, 235, 1) 100%
   );
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  height: 100vh;
-}
 
-.hidden {
-  display: none;
+  @include flex(center, start, initial);
+  height: 100vh;
+  overflow: hidden;
 }
 
 main {
   width: 50%;
-  display: flex;
-  flex-direction: column;
+  @include flex(initial, initial, column);
+
+  .sidebar-btn {
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-self: center;
+    padding: 0.3rem;
+    position: absolute;
+    z-index: 10;
+    top: 1%;
+    left: 1%;
+    cursor: pointer;
+
+    line {
+      transition: all 0.5s;
+      opacity: 1;
+    }
+  }
+
+  .sidebar.open ~ .sidebar-btn {
+    #one {
+      opacity: 0;
+    }
+    #two {
+      transform: rotate(42deg) translate(5px, -5px);
+    }
+    #three {
+      transform: rotate(-41deg) translate(-11px, -1px);
+    }
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+    transition: all 1s;
+  }
+
+  .sidebar {
+    @include flex(space-evenly, center, column);
+    transition: all 0.3s;
+    width: 20rem;
+    height: 100vh;
+    position: absolute;
+    background: rgb(46, 46, 46);
+    opacity: 1;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    color: white;
+    transform: translateX(-100%);
+
+    .popular-city {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      font-size: 1.5rem;
+
+      .city-img {
+        max-width: 100%;
+        opacity: 0.5;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .info {
+        @include flex(initial, start, column);
+        align-self: center;
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+        padding: 1rem;
+
+        .title {
+          font-size: 1.7rem;
+          width: 100%;
+          @include flex(space-between);
+        }
+        .description {
+          @include flex(initial, start, column);
+          margin: 1rem 0;
+        }
+        img {
+          position: absolute;
+          left: 65%;
+          top: 20%;
+        }
+        .details {
+          @include flex(initial, initial, column);
+        }
+      }
+    }
+  }
 
   .input-section {
     margin: 2rem auto;
@@ -64,8 +152,7 @@ main {
     form {
       margin-top: 3rem;
       position: relative;
-      display: flex;
-      justify-content: center;
+      @include flex(center);
 
       input {
         width: 50%;
@@ -78,45 +165,22 @@ main {
       button {
         @include main-button();
       }
+      .btn-section {
+        display: flex;
+      }
 
       .reload {
-        &:hover #img {
+        @include flex(center, center, initial);
+        margin-left: 0.5rem;
+
+        .reload-img {
+          position: relative;
+          left: 3px;
+          transition: all 0.5s;
+        }
+        &:hover .reload-img {
           transform: rotate(90deg);
         }
-      }
-
-      .submit {
-        display: none;
-      }
-
-      #img {
-        position: relative;
-        top: 2px;
-        left: 3px;
-        transition: all 0.5s;
-      }
-    }
-
-    .list {
-      width: 50%;
-      margin: 1rem auto 0;
-    }
-
-    li {
-      list-style: none;
-      border: 2px solid black;
-      width: max-content;
-      width: 100%;
-      padding: 0.5rem;
-      border-radius: 10px;
-      background: aliceblue;
-      margin: 0.2rem auto;
-      cursor: pointer;
-      &:hover {
-        background: $hover;
-      }
-      &:focus {
-        @include focus();
       }
     }
   }
@@ -169,100 +233,52 @@ main {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    object-fit: cover;
+    overflow: visible;
   }
 
   main {
     min-width: 100%;
     padding: 1rem;
 
-    .sidebar-btn {
-      position: absolute;
-      z-index: 10;
-      top: 1%;
-      left: 2%;
-      pointer-events: cursor;
-    }
-
     .sidebar.open {
-      transform: translateY(0);
-      transition: all 1s;
+      transform: translate(0, 0);
     }
 
     .sidebar {
-      transition: all 1s;
       width: 100vw;
-      height: 100vh;
+      height: initial;
       padding: 2rem 0;
-      position: absolute;
-      background: rgb(46, 46, 46);
+      transform: translate(0, -100%);
       overflow: hidden;
-      opacity: 1;
-      z-index: 5;
-      padding-left: 0.7rem;
-      top: 0;
-      left: 0;
-      color: white;
-      transform: translateY(-100%);
 
       .popular-city {
         position: relative;
-        font-size: 1rem;
 
         .city-img {
-          width: 320px;
-          height: 200px;
+          width: 100%;
           position: relative;
           z-index: 0;
-          opacity: 0.5;
-          left: 6%;
+          opacity: 1;
+          img {
+            opacity: 0.5;
+          }
         }
+
         .info {
           position: absolute;
-          z-index: 1;
-          top: 10px;
-          width: 100%;
 
           .title {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            font-size: 1.5rem;
-          }
-          .description {
-            width: 50%;
-            display: flex;
-            justify-content: left;
-            align-items: center;
-            flex-direction: column;
-            margin: 1rem 0;
-          }
-          img {
-            position: absolute;
-            left: 65%;
-            top: 13%;
+            font-size: 2rem;
           }
           .details {
-            display: flex;
-            padding-left: 3rem;
-            span {
-              margin-right: 1rem;
-            }
+            font-size: 1.5rem;
           }
         }
       }
     }
 
     .input-section {
-      .list {
-        width: 75%;
-      }
-
-      li {
-        text-transform: uppercase;
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-      }
-
       h1 {
         text-align: left;
         padding-left: 1.5rem;
@@ -271,21 +287,22 @@ main {
       form {
         flex-direction: column-reverse;
         align-items: center;
-        justify-content: space;
 
         input {
           margin-top: 0.5rem;
           margin-right: 0rem;
-          padding: 1rem;
+          padding: 0.5rem;
           width: 100%;
+          font-size: 1.5rem;
         }
         .btn-section {
           display: flex;
           width: 100%;
 
           button {
-            padding: 0.5rem 1rem;
+            padding: 0.2rem;
             width: 100%;
+            font-size: 1.5rem;
           }
 
           .submit {

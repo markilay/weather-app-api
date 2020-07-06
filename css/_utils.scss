@@ -1,24 +1,45 @@
-$main-font: 'Cabin', sans-serif;
-$btn-font: 'Varela Round', sans-serif;
+$main-font: "Cabin", sans-serif;
+$btn-font: "Varela Round", sans-serif;
 $outline: 2px solid #f49a4b;
-$hover: linear-gradient(90deg, rgba(223,217,231,1) 17%, rgba(176,162,201,1) 47%, rgba(100,100,233,1) 100%);
-$background-img: 'https://images.unsplash.com/photo-1530908295418-a12e326966ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60';
+$hover: linear-gradient(
+  90deg,
+  rgba(223, 217, 231, 1) 17%,
+  rgba(176, 162, 201, 1) 47%,
+  rgba(100, 100, 233, 1) 100%
+);
+$background-img: "https://images.unsplash.com/photo-1530908295418-a12e326966ba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60";
 
-
-@mixin focus {
-	background: $hover;
-	border: $outline;
+@mixin flex($justify: initial, $align: initial, $direct: initial) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direct;
 }
 
 @mixin main-button {
-	background: -webkit-linear-gradient(left, rgba(2,0,36,1) 0%, rgba(244,154,75,1) 0%, rgba(83,83,235,1) 100%);
-	background: -o-linear-gradient(left, rgba(2,0,36,1) 0%, rgba(244,154,75,1) 0%, rgba(83,83,235,1) 100%);
-	background: linear-gradient(to right, rgba(2,0,36,1) 0%, rgba(244,154,75,1) 0%, rgba(83,83,235,1) 100%); 
+  background: -webkit-linear-gradient(
+    left,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(244, 154, 75, 1) 0%,
+    rgba(83, 83, 235, 1) 100%
+  );
+  background: -o-linear-gradient(
+    left,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(244, 154, 75, 1) 0%,
+    rgba(83, 83, 235, 1) 100%
+  );
+  background: linear-gradient(
+    to right,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(244, 154, 75, 1) 0%,
+    rgba(83, 83, 235, 1) 100%
+  );
 
-	border: 2px solid black;
-	border-radius: 1rem;
-	padding: 0.5rem 1rem;
-	font-family: $btn-font;
-	color: #e6e1dd;
-	cursor: pointer;
+  border: 2px solid black;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  font-family: $btn-font;
+  color: #e6e1dd;
+  cursor: pointer;
 }
