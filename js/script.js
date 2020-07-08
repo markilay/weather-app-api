@@ -6,8 +6,6 @@ const API_KEY = "cba9b27e4c6cd316c764d468b4ee756e";
 const LOCATION_API =
   "https://api.bigdatacloud.net/data/reverse-geocode-client?";
 
-const WINDOW_WIDTH = 600;
-
 const input = document.querySelector('[name="city"]');
 const city = document.querySelector(".result-section");
 const reload = document.querySelector(".reload");
@@ -18,12 +16,16 @@ const sidebarBtn = document.querySelector(".sidebar-btn");
 const backdrop = document.querySelector(".backdrop");
 
 async function getCityWeather(query) {
-  const res = await fetch(
-    `${WEATHER_API}weather?q=${query}&appid=${API_KEY}&units=metric`
-  );
-  const data = await res.json();
+  try {
+    const res = await fetch(
+      `${WEATHER_API}weather?q=${query}&appid=${API_KEY}&units=metric`
+    );
+    const data = await res.json();
+    city.innerHTML = displayCityWeather(data);
+  } catch (error) {
+    alert("Such a city is not found ");
+  }
 
-  city.innerHTML = displayCityWeather(data);
   form.reset();
 }
 
@@ -151,19 +153,15 @@ async function generatePopularCities() {
 function handlerSidebar(e) {
   if (!sidebar.classList.contains("open")) {
     generatePopularCities();
-    backdrop.classList.add("open");
 
-    if (window.innerWidth <= WINDOW_WIDTH) {
-      const loader = document.querySelector(".loader");
+    const loader = document.querySelector(".loader");
+    loader.style.display = "block";
 
-      loader.style.display = "block";
-      setTimeout(() => {
-        loader.style.display = "none";
-        sidebar.classList.add("open");
-      }, 1000);
-    } else {
+    setTimeout(() => {
+      loader.style.display = "none";
+      backdrop.classList.add("open");
       sidebar.classList.add("open");
-    }
+    }, 1000);
   } else {
     sidebar.classList.remove("open");
     backdrop.classList.remove("open");
